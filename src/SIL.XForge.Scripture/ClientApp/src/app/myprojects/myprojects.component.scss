@@ -1,0 +1,11 @@
+.flex-header {
+  font-weight: bold;
+  text-align: center;
+  font-size: 1em;
+}
+.mat-header-cell, .mat-cell {
+  flex: 0 0 70%;
+  padding: 18px 8px 8px 0;
+}
+
+.mat-card { width: 40%;}

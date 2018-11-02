@@ -1,0 +1,63 @@
+<div fxLayoutAlign="center">
+  <mat-card>
+    <mat-card-title fxLayoutAlign="center">My Projects</mat-card-title>
+    <mat-card-content fxLayout="column">
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <form>
+          <div>
+            <button mat-raised-button color="primary" type="button" class="submit-button" (click)="btnConnectParatext();">
+              <i class="material-icons">add</i> Connect to Paratext</button>
+          </div>
+          <div *ngIf="projectCount > 20">
+            <mat-form-field class="example-full-width">
+              <input matInput (keyup)="applyFilter($event.target.value)" placeholder="filter projects" autofocus />
+            </mat-form-field>
+          </div>
+          <div>
+            <label> {{ projectCount === null ? 0 : projectCount }} Projects</label>
+          </div>
+          <div>
+            <div>
+              <mat-table #table mat-table [dataSource]="dataSource">
+                <!-- Project -->
+                <ng-container cdkColumnDef="id">
+                  <mat-header-cell *cdkHeaderCellDef class="flex-header">Project</mat-header-cell>
+                  <mat-cell *cdkCellDef="let row">
+                    <div *ngIf="row.isMember;else elseBlock">
+                      <a [routerLink]="['/project']">{{row.projectName}}</a>
+                    </div>
+                    <ng-template #elseBlock>
+                      {{row.projectName}}
+                    </ng-template>
+                  </mat-cell>
+                </ng-container>
+
+                <!-- Administrator -->
+                <ng-container cdkColumnDef="name">
+                  <mat-header-cell *cdkHeaderCellDef> </mat-header-cell>
+                  <mat-cell *cdkCellDef="let row">
+                    <mat-list class="app-class">
+                      <mat-list-item *ngIf="!row.isMember">
+                        <button mat-raised-button color="primary" type="button" class="submit-button" (click)="btnMember();">
+                          <i class="material-icons">add</i> Administrator</button>
+                      </mat-list-item>
+                    </mat-list>
+                  </mat-cell>
+                </ng-container>
+
+                <!-- Header and Row Declarations -->
+                <mat-header-row *cdkHeaderRowDef="['id','name' ]"></mat-header-row>
+                <mat-row *cdkRowDef="let row; columns: [ 'id', 'name']" class="my-mat-row"></mat-row>
+              </mat-table>
+            </div>
+          </div>
+        </form>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <div fxLayoutAlign="center">
+        <mat-paginator *ngIf="projectCount > 20" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

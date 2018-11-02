@@ -21,6 +21,11 @@
             <i class="material-icons">view_list</i> Fetch data
         </a>
       </li>
+      <li class="nav-item" [routerLinkActive]="['link-active']">
+        <a class="nav-link" [routerLink]="['/myprojects']" (click)="collapse()">
+            <i class="material-icons">list_alt</i> My Projects
+        </a>
+      </li>
     </ul>
   </div>
 </nav>

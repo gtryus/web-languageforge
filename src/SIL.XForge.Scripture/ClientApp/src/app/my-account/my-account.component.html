@@ -9,7 +9,9 @@
         <div>
           <button
             id="name-update-button"
-            [disabled]="controlStates.get('name') !== elementState.Dirty"
+            [disabled]="
+              controlStates.get('name') !== elementState.Dirty && controlStates.get('name') !== elementState.Error
+            "
             mat-stroked-button
             (click)="updateClicked('name')"
           >
@@ -26,6 +28,13 @@
               class="material-icons"
               style="color: green"
               >done</i
+            >
+            <i
+              id="name-error-icon"
+              *ngIf="controlStates.get('name') === elementState.Error"
+              class="material-icons"
+              style="color: red"
+              >error</i
             >
             <i
               id="name-button-icon"
@@ -47,7 +56,10 @@
         <div>
           <button
             id="username-update-button"
-            [disabled]="controlStates.get('username') !== elementState.Dirty"
+            [disabled]="
+              controlStates.get('username') !== elementState.Dirty &&
+              controlStates.get('username') !== elementState.Error
+            "
             mat-stroked-button
             (click)="updateClicked('username')"
           >
@@ -65,6 +77,13 @@
               class="material-icons"
               style="color: green"
               >done</i
+            >
+            <i
+              id="username-error-icon"
+              *ngIf="controlStates.get('username') === elementState.Error"
+              class="material-icons"
+              style="color: red"
+              >error</i
             >
             <i
               id="username-button-icon"
@@ -101,7 +120,9 @@
         <div>
           <button
             id="email-update-button"
-            [disabled]="controlStates.get('email') !== elementState.Dirty"
+            [disabled]="
+              controlStates.get('email') !== elementState.Dirty && controlStates.get('email') !== elementState.Error
+            "
             mat-stroked-button
             (click)="updateClicked('email')"
           >
@@ -119,6 +140,13 @@
               class="material-icons"
               style="color: green"
               >done</i
+            >
+            <i
+              id="email-error-icon"
+              *ngIf="controlStates.get('email') === elementState.Error"
+              class="material-icons"
+              style="color: red"
+              >error</i
             >
             <i
               id="email-button-icon"
@@ -142,7 +170,9 @@
         <div>
           <button
             id="mobilePhone-update-button"
-            [disabled]="controlStates.get('mobilePhone') !== elementState.Dirty"
+            [disabled]="
+              controlStates.get('mobilePhone') !== elementState.Dirty && controlStates.get('mobilePhone') !== elementState.Error
+            "
             mat-stroked-button
             (click)="updateClicked('mobilePhone')"
           >
@@ -160,6 +190,13 @@
               class="material-icons"
               style="color: green"
               >done</i
+            >
+            <i
+              id="mobilePhone-error-icon"
+              *ngIf="controlStates.get('mobilePhone') === elementState.Error"
+              class="material-icons"
+              style="color: red"
+              >error</i
             >
             <i
               id="mobilePhone-button-icon"

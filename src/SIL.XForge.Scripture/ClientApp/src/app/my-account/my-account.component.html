@@ -171,7 +171,8 @@
           <button
             id="mobilePhone-update-button"
             [disabled]="
-              controlStates.get('mobilePhone') !== elementState.Dirty && controlStates.get('mobilePhone') !== elementState.Error
+              controlStates.get('mobilePhone') !== elementState.Dirty &&
+              controlStates.get('mobilePhone') !== elementState.Error
             "
             mat-stroked-button
             (click)="updateClicked('mobilePhone')"
@@ -215,7 +216,7 @@
       <div fxLayout="column" fwLayoutAlign="space-between">
         <div>Receive messages via</div>
         <div>
-          <mat-button-toggle-group formControlName="contactMethod" (change)="update('contactMethod')">
+          <mat-button-toggle-group formControlName="contactMethod" (click)="update('contactMethod')">
             <mat-button-toggle value="email"><i class="material-icons">email</i> Email</mat-button-toggle>
             <mat-button-toggle value="sms"><i class="material-icons">textsms</i> SMS</mat-button-toggle>
             <mat-button-toggle value="emailsms"
@@ -236,6 +237,13 @@
             class="material-icons"
             style="color: green"
             >done</i
+          >
+          <i
+            id="contactMethod-error-icon"
+            *ngIf="controlStates.get('contactMethod') === elementState.Error"
+            class="material-icons"
+            style="color: red"
+            >error</i
           >
         </div>
       </div>
@@ -268,6 +276,13 @@
             style="color: green"
             >done</i
           >
+          <i
+            id="birthday-error-icon"
+            *ngIf="controlStates.get('birthday') === elementState.Error"
+            class="material-icons"
+            style="color: red"
+            >error</i
+          >
         </div>
       </div>
 
@@ -299,6 +314,13 @@
             class="material-icons"
             style="color: green"
             >done</i
+          >
+          <i
+            id="gender-error-icon"
+            *ngIf="controlStates.get('gender') === elementState.Error"
+            class="material-icons"
+            style="color: red"
+            >error</i
           >
         </div>
       </div>

@@ -164,18 +164,18 @@ describe('MyAccountComponent', () => {
     const updateButton = env.nameUpdateButton.nativeElement;
     expect(env.component.formGroup.get('name').value).toEqual(originalName, 'test setup problem');
 
-    verifyInputControlStates(
-      env,
-      'name',
-      /* expected state */ env.component.elementState.InSync,
-      updateButton,
-      /* button enabled */ false,
-      /* arrow */ true,
-      /* spinner */ false,
-      /* green check */ false,
-      /* error icon */ false,
-      /* input enabled */ true
-    );
+    verifyStates({
+      env: env,
+      controlName: 'name',
+      expectedState: env.component.elementState.InSync,
+      updateButton: updateButton,
+      expectedUpdateButtonEnabled: false,
+      expectedArrow: true,
+      expectedSpinner: false,
+      expectedGreenCheck: false,
+      expectedErrorIcon: false,
+      expectedInputEnabled: true
+    });
 
     // change name on page
     const newName = 'robert';
@@ -183,52 +183,52 @@ describe('MyAccountComponent', () => {
     env.component.formGroup.get('name').setValue(newName);
     env.fixture.detectChanges();
 
-    verifyInputControlStates(
-      env,
-      'name',
-      /* expected state */ env.component.elementState.Dirty,
-      updateButton,
-      /* button enabled */ true,
-      /* arrow */ true,
-      /* spinner */ false,
-      /* green check */ false,
-      /* error icon */ false,
-      /* input enabled */ true
-    );
+    verifyStates({
+      env: env,
+      controlName: 'name',
+      expectedState: env.component.elementState.Dirty,
+      updateButton: updateButton,
+      expectedUpdateButtonEnabled: true,
+      expectedArrow: true,
+      expectedSpinner: false,
+      expectedGreenCheck: false,
+      expectedErrorIcon: false,
+      expectedInputEnabled: true
+    });
 
     // click update
     env.clickButton(env.nameUpdateButton);
 
-    verifyInputControlStates(
-      env,
-      'name',
-      /* expected state */ env.component.elementState.Submitting,
-      updateButton,
-      /* button enabled */ false,
-      /* arrow */ false,
-      /* spinner */ true,
-      /* green check */ false,
-      /* error icon */ false,
-      /* input enabled */ false
-    );
+    verifyStates({
+      env: env,
+      controlName: 'name',
+      expectedState: env.component.elementState.Submitting,
+      updateButton: updateButton,
+      expectedUpdateButtonEnabled: false,
+      expectedArrow: false,
+      expectedSpinner: true,
+      expectedGreenCheck: false,
+      expectedErrorIcon: false,
+      expectedInputEnabled: false
+    });
 
     // The spinner shows during networking. Time passes. Finish networking with flush()
     // before checking that the spinner is gone.
     flush();
     env.fixture.detectChanges();
 
-    verifyInputControlStates(
-      env,
-      'name',
-      /* expected state */ env.component.elementState.Submitted,
-      updateButton,
-      /* button enabled */ false,
-      /* arrow */ false,
-      /* spinner */ false,
-      /* green check */ true,
-      /* error icon */ false,
-      /* input enabled */ true
-    );
+    verifyStates({
+      env: env,
+      controlName: 'name',
+      expectedState: env.component.elementState.Submitted,
+      updateButton: updateButton,
+      expectedUpdateButtonEnabled: false,
+      expectedArrow: false,
+      expectedSpinner: false,
+      expectedGreenCheck: true,
+      expectedErrorIcon: false,
+      expectedInputEnabled: true
+    });
 
     // We don't need to test the fake database, but this failing is an early indication
     // of what may be about to go wrong.
@@ -239,36 +239,36 @@ describe('MyAccountComponent', () => {
     env.component.formGroup.get('name').setValue(newerName);
     env.fixture.detectChanges();
 
-    verifyInputControlStates(
-      env,
-      'name',
-      /* expected state */ env.component.elementState.Dirty,
-      updateButton,
-      /* button enabled */ true,
-      /* arrow */ true,
-      /* spinner */ false,
-      /* green check */ false,
-      /* error icon */ false,
-      /* input enabled */ true
-    );
+    verifyStates({
+      env: env,
+      controlName: 'name',
+      expectedState: env.component.elementState.Dirty,
+      updateButton: updateButton,
+      expectedUpdateButtonEnabled: true,
+      expectedArrow: true,
+      expectedSpinner: false,
+      expectedGreenCheck: false,
+      expectedErrorIcon: false,
+      expectedInputEnabled: true
+    });
 
     // Modify text back to what it is in the database. In other words, manually editing
     // it back to a 'clean state'.
     env.component.formGroup.get('name').setValue(newName);
     env.fixture.detectChanges();
 
-    verifyInputControlStates(
-      env,
-      'name',
-      /* expected state */ env.component.elementState.InSync,
-      updateButton,
-      /* button enabled */ false,
-      /* arrow */ true,
-      /* spinner */ false,
-      /* green check */ false,
-      /* error icon */ false,
-      /* input enabled */ true
-    );
+    verifyStates({
+      env: env,
+      controlName: 'name',
+      expectedState: env.component.elementState.InSync,
+      updateButton: updateButton,
+      expectedUpdateButtonEnabled: false,
+      expectedArrow: true,
+      expectedSpinner: false,
+      expectedGreenCheck: false,
+      expectedErrorIcon: false,
+      expectedInputEnabled: true
+    });
   }));
 
   it('handles network error', fakeAsync(() => {
@@ -293,18 +293,18 @@ describe('MyAccountComponent', () => {
     env.fixture.detectChanges();
     expect(env.component.userFromDatabase.name).toEqual(originalName, 'test setup problem?');
 
-    verifyInputControlStates(
-      env,
-      'name',
-      /* expected state */ env.component.elementState.Error,
-      updateButton,
-      /* button enabled */ true,
-      /* arrow */ false,
-      /* spinner */ false,
-      /* green check */ false,
-      /* error icon */ true,
-      /* input enabled */ true
-    );
+    verifyStates({
+      env: env,
+      controlName: 'name',
+      expectedState: env.component.elementState.Error,
+      updateButton: updateButton,
+      expectedUpdateButtonEnabled: true,
+      expectedArrow: false,
+      expectedSpinner: false,
+      expectedGreenCheck: false,
+      expectedErrorIcon: true,
+      expectedInputEnabled: true
+    });
 
     expect(env.component.formGroup.get('name').value).toEqual(
       newName,
@@ -341,15 +341,15 @@ describe('MyAccountComponent', () => {
     env.clickButton(env.contactMethodSmsToggle);
     expect(env.component.formGroup.get('contactMethod').value).toEqual(newValue, 'test setup problem');
 
-    verifyStates(
-      env,
-      'contactMethod',
-      /* expected state */ env.component.elementState.Submitting,
-      /* spinner */ true,
-      /* green check */ false,
-      /* error icon */ false,
-      /* input enabled */ false
-    );
+    verifyStates({
+      env: env,
+      controlName: 'contactMethod',
+      expectedState: env.component.elementState.Submitting,
+      expectedSpinner: true,
+      expectedGreenCheck: false,
+      expectedErrorIcon: false,
+      expectedInputEnabled: false
+    });
 
     // Time passes
     flush();
@@ -361,15 +361,15 @@ describe('MyAccountComponent', () => {
       'should have set form value back to original value'
     );
 
-    verifyStates(
-      env,
-      'contactMethod',
-      /* expected state */ env.component.elementState.Error,
-      /* spinner */ false,
-      /* green check */ false,
-      /* error icon */ true,
-      /* input enabled */ true
-    );
+    verifyStates({
+      env: env,
+      controlName: 'contactMethod',
+      expectedState: env.component.elementState.Error,
+      expectedSpinner: false,
+      expectedGreenCheck: false,
+      expectedErrorIcon: true,
+      expectedInputEnabled: true
+    });
   }));
 
   describe('changing username dialog', () => {
@@ -459,45 +459,32 @@ describe('MyAccountComponent', () => {
   });
 });
 
-/** Verify states of controls associated with a specific datum. */
-function verifyStates(
-  env: TestEnvironment,
-  controlName: string,
-  expectedState: any,
-  expectedSpinner: boolean,
-  expectedGreenCheck: boolean,
-  expectedErrorIcon: boolean,
-  expectedInputEnabled: boolean
-) {
-  expect(env.component.controlStates.get(controlName)).toBe(expectedState);
-  expect(env.spinner(controlName) !== null).toBe(expectedSpinner);
-  expect(env.greenCheck(controlName) !== null).toBe(expectedGreenCheck);
-  expect(env.errorIcon(controlName) != null).toBe(expectedErrorIcon);
-  expect(env.component.formGroup.get(controlName).enabled).toBe(expectedInputEnabled);
-}
+/**
+ * Verify states of controls associated with a specifc datum.
+ * Controls using an Update button can make use of expectedUpdateButtonEnabled and expectedArrow. */
+function verifyStates(arg: {
+  env: TestEnvironment;
+  controlName: string;
+  expectedState: any;
+  updateButton?: any;
+  expectedUpdateButtonEnabled?: boolean;
+  expectedArrow?: boolean;
+  expectedSpinner: boolean;
+  expectedGreenCheck: boolean;
+  expectedErrorIcon: boolean;
+  expectedInputEnabled: boolean;
+}) {
+  expect(arg.env.component.controlStates.get(arg.controlName)).toBe(arg.expectedState);
+  expect(arg.env.spinner(arg.controlName) !== null).toBe(arg.expectedSpinner);
+  expect(arg.env.greenCheck(arg.controlName) !== null).toBe(arg.expectedGreenCheck);
+  expect(arg.env.errorIcon(arg.controlName) != null).toBe(arg.expectedErrorIcon);
+  expect(arg.env.component.formGroup.get(arg.controlName).enabled).toBe(arg.expectedInputEnabled);
 
-/** Verify states of controls associated with a specifc datum, that uses an Update button. */
-function verifyInputControlStates(
-  env: TestEnvironment,
-  controlName: string,
-  expectedState: any,
-  updateButton: any,
-  expectedUpdateButtonEnabled: boolean,
-  expectedArrow: boolean,
-  expectedSpinner: boolean,
-  expectedGreenCheck: boolean,
-  expectedErrorIcon: boolean,
-  expectedInputEnabled: boolean
-) {
-  expect(updateButton.disabled).not.toBe(expectedUpdateButtonEnabled);
-  expect(env.buttonIcon(controlName) !== null).toBe(expectedArrow);
-  verifyStates(
-    env,
-    controlName,
-    expectedState,
-    expectedSpinner,
-    expectedGreenCheck,
-    expectedErrorIcon,
-    expectedInputEnabled
-  );
+  if (arg.expectedUpdateButtonEnabled !== undefined) {
+    expect(arg.updateButton.disabled).not.toBe(arg.expectedUpdateButtonEnabled);
+  }
+
+  if (arg.expectedArrow !== undefined) {
+    expect(arg.env.buttonIcon(arg.controlName) !== null).toBe(arg.expectedArrow);
+  }
 }

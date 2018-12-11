@@ -169,10 +169,11 @@ export class MyAccountComponent extends SubscriptionDisposable implements OnInit
     this.userService
       .updateUserAttributes(updatedAttributes)
       .then(() => {
-        this.formGroup.get(element).enable();
+        console.log(`then`);
         this.controlStates.set(element, ElementState.Submitted);
       })
       .catch(exception => {
+        console.log(`catch`);
         // Set an input without an update button back to its previous value, so the user can try
         // again by clicking the new and desired value.
         if (!this.controlsWithUpdateButton.includes(element)) {
@@ -180,7 +181,6 @@ export class MyAccountComponent extends SubscriptionDisposable implements OnInit
         }
 
         const noEntrySymbol = '\u{26d4}';
-        this.formGroup.get(element).enable();
         this.controlStates.set(element, ElementState.Error);
         // .push() currently forces preformatting of details. So not indenting lines, and keeping within a narrow width.
         this.noticeService.push(
@@ -195,6 +195,10 @@ and then try again.
 Specific details:
 ${exception.stack}`
         );
+      })
+      .finally(() => {
+        console.log(`finally`);
+        this.formGroup.get(element).enable();
       });
   }
 }

@@ -1,0 +1,27 @@
+<div fxLayout="column">
+  <mat-card>
+    <mat-card-content fxLayout="column">
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <div fxLayout="column">
+          <div appImageDragDrop (filesDropped)="handleDrop($event)" (filesHovered)="dropzoneState($event)">
+            <img [src]="url" class="image-box" />
+          </div>
+          <input placeholder="Select File" type="file" id="fileUpload" name="fileUpload" name="fileupload" #image class="file-input-display"
+            accept="image/*" (change)="onImageSelected($event)" />
+          <div class="myaccount-button">
+            <button *ngIf="chooseImageBtn" mat-raised-button color="primary" id="choose-image-btn" name="choose-image-btn"
+              class="choose-image-btn" (click)="image.click()">Choose Picture</button>
+            <div *ngIf="uploadImageBtn">
+              <button mat-raised-button color="primary" type="button" id="upload-image-btn" name="upload-image-btn"
+                (click)="onAvatarUpload()">
+                <mat-icon>cloud_upload</mat-icon> Upload Picture
+              </button> &nbsp;
+              <button mat-raised-button color="primary" type="button" id="clear-image-btn" name="clear-image-btn"
+                (click)="onClearImage()">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

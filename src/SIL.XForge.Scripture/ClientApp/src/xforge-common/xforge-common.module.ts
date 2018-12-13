@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { OAuthModule } from 'angular-oauth2-oidc';
 
+import { ImageDragDropDirective } from '@xforge-common/image-drag-drop/image-drag-drop.directive';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { EmailInviteComponent } from './email-invite/email-invite.component';
 import { InviteDialogComponent } from './email-invite/invite-dialog.component';
@@ -29,7 +30,8 @@ import { UICommonModule } from './ui-common.module';
     NoticeComponent,
     EmailInviteComponent,
     InviteDialogComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    ImageDragDropDirective
   ],
   exports: [
     ChangePasswordComponent,
@@ -37,7 +39,8 @@ import { UICommonModule } from './ui-common.module';
     NoticeComponent,
     EmailInviteComponent,
     InviteDialogComponent,
-    ProjectsComponent
+    ProjectsComponent,
+    ImageDragDropDirective
   ]
 })
 export class XForgeCommonModule {}

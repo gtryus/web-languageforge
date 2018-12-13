@@ -6,6 +6,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { IdentityModule } from '@identity/identity.module';
 import { InviteDialogComponent } from '@xforge-common/email-invite/invite-dialog.component';
+// import { ImageDragDropDirective } from '@xforge-common/image-drag-drop/image-drag-drop.directive';
 import { DetailSnackBarComponent } from '@xforge-common/notice/detail-snack-bar.component';
 import { UICommonModule } from '@xforge-common/ui-common.module';
 import { XForgeCommonModule } from '@xforge-common/xforge-common.module';
@@ -17,6 +18,7 @@ import { CoreModule } from './core/core.module';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { HomeComponent } from './home/home.component';
+import { MyAccountComponent } from './my-account/my-account.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { RealtimeComponent } from './realtime/realtime.component';
 import { SharedModule } from './shared/shared.module';
@@ -29,7 +31,8 @@ import { SharedModule } from './shared/shared.module';
     CounterComponent,
     FetchDataComponent,
     ConnectProjectComponent,
-    RealtimeComponent
+    RealtimeComponent,
+    MyAccountComponent
   ],
   imports: [
     AppRoutingModule,

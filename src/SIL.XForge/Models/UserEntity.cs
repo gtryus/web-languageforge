@@ -11,6 +11,7 @@ namespace SIL.XForge.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string CanonicalEmail { get; set; }
+        public string Avatar_ref { get; set; }
         public bool EmailVerified { get; set; }
         public string ValidationKey { get; set; }
         public DateTime ValidationExpirationDate { get; set; }

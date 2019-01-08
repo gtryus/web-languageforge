@@ -1,6 +1,6 @@
 using CommandLine;
 
-namespace SIL.XForge.Scripture.CodeGenerator
+namespace SIL.XForge.CodeGenerator
 {
     /// <summary>
     /// Command line options supported by the CodeGenerator

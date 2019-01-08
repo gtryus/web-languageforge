@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\SIL.XForge.Scripture\CodeGenerator\CodeGenerator.csproj" />
+    <ProjectReference Include="..\..\src\CodeGenerator\CodeGenerator.csproj" />
     <ProjectReference Include="..\..\src\SIL.XForge.Scripture\SIL.XForge.Scripture.csproj" />
   </ItemGroup>
 

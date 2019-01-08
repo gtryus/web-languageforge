@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using NUnit.Framework;
 
-namespace SIL.XForge.Scripture.CodeGenerator.Tests
+namespace SIL.XForge.CodeGenerator.Tests
 {
     class CodeGeneratorTests
     {
@@ -25,7 +24,7 @@ namespace SIL.XForge.Scripture.CodeGenerator.Tests
             var runningFrom = Assembly.GetExecutingAssembly().Location;
             Console.WriteLine(runningFrom);
             CodeGeneratorApp.GenerateTypeScriptArtifactsFromCSharpType(typeof(TestClassResource), "SFProject.ts", excludedBaseClasses, interfaces,
-                "../../../../../src/SIL.XForge.Scripture/CodeGenerator/Templates", typeScriptFile, jsonApiWriter, null);
+                "../../../../../src/CodeGenerator/Templates", typeScriptFile, jsonApiWriter, null);
             // Seek back to the beginning before reading into a string
             typeScriptFile.Position = 0;
             jsonApiWriter.Position = 0;

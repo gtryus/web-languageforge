@@ -6,11 +6,9 @@ using NJsonSchema;
 using NJsonSchema.CodeGeneration.TypeScript;
 using System.Reflection;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using SIL.Extensions;
 
-namespace SIL.XForge.Scripture.CodeGenerator
+namespace SIL.XForge.CodeGenerator
 {
     public class CodeGeneratorApp
     {

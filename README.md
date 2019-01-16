@@ -150,6 +150,18 @@ You can make the environment variable (`CHROME_BIN=chromium-browser`) permanent 
 
 See documentation for [running tests](https://github.com/angular/angular-cli/wiki/test) and [writing tests](https://angular.io/guide/testing#testing).
 
+#### Debugging Angular Unit Tests
+
+To debug front end unit tests, see the basic instructions above, but also
+
+* ```bash
+CHROME_BIN=chromium-browser ng test --sourceMap=true
+```
+* When the Chromium opens with the Karma tab (probably a new window behind all the others), click DEBUG in the upper right corner.
+* Press F12 to open developer tools
+* Click the Sources tab
+* Expand the cloud webpack://./src/app and navigate to the file you want to debug
+
 ### Angular End-To-End (E2E) Testing
 
 To run E2E tests, make sure you are serving the app. From the repo root

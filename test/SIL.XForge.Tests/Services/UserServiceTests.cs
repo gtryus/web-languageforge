@@ -19,6 +19,7 @@ namespace SIL.XForge.Services
     public class UserServiceTests
     {
         private const string User01Id = "user01";
+        private const string User01Email = "user01@example.com";
 
         [Test]
         public void CreateAsync_UserRole()
@@ -86,13 +87,13 @@ namespace SIL.XForge.Services
                 var userResource = new TestUserResource
                 {
                     Id = "usernew",
-                    Email = "UserNew@gmail.com"
+                    Email = "UserNew@example.com"
                 };
                 UserResource newResource = await env.Service.CreateAsync(userResource);
 
                 Assert.That(newResource, Is.Not.Null);
-                Assert.That(newResource.Email, Is.EqualTo("UserNew@gmail.com"));
-                Assert.That(newResource.CanonicalEmail, Is.EqualTo("usernew@gmail.com"));
+                Assert.That(newResource.Email, Is.EqualTo("UserNew@example.com"));
+                Assert.That(newResource.CanonicalEmail, Is.EqualTo("usernew@example.com"));
             }
         }
 
@@ -185,20 +186,20 @@ namespace SIL.XForge.Services
                 env.SetUser(User01Id, SystemRoles.SystemAdmin);
                 env.JsonApiContext.AttributesToUpdate.Returns(new Dictionary<AttrAttribute, object>
                     {
-                        { env.GetAttribute("email"), "New@gmail.com" }
+                        env.GetAttribute("email"), "New@example.com" }
                     });
                 env.JsonApiContext.RelationshipsToUpdate.Returns(new Dictionary<RelationshipAttribute, object>());
 
                 var resource = new TestUserResource
                 {
                     Id = User01Id,
-                    Email = "New@gmail.com"
+                    Email = "New@example.com"
                 };
                 UserResource updatedResource = await env.Service.UpdateAsync(resource.Id, resource);
 
                 Assert.That(updatedResource, Is.Not.Null);
-                Assert.That(updatedResource.Email, Is.EqualTo("New@gmail.com"));
-                Assert.That(updatedResource.CanonicalEmail, Is.EqualTo("new@gmail.com"));
+                Assert.That(updatedResource.Email, Is.EqualTo("New@example.com"));
+                Assert.That(updatedResource.CanonicalEmail, Is.EqualTo("new@example.com"));
             }
         }
 
@@ -382,9 +383,42 @@ namespace SIL.XForge.Services
         }
 
         [Test]
-        public async Task CheckHasUniqueEmailAddress_Unique()
+        public void CheckHasUniqueEmailAddress_Unique()
         {
             var env = new TestEnvironment();
+            var result = env.Service.CheckHasUniqueEmailAddress(new TestUserResource
+            {
+                Id = "uniqID",
+                Email = "i.m_unique@example.com",
+                CanonicalEmail = "i.m_unique@example.com"
+            });
+            Assert.That(result, Is.True);
+        }
+
+        [Test]
+        public void CheckHasUniqueEmailAddress_Duplicate()
+        {
+            var env = new TestEnvironment();
+            var result = env.Service.CheckHasUniqueEmailAddress(new TestUserResource
+            {
+                Id = "uniqId",
+                Email = User01Email,
+                CanonicalEmail = User01Email
+            });
+            Assert.That(result, Is.False);
+        }
+
+        [Test]
+        public void CheckHasUniqueEmailAddress_ExistingUser()
+        {
+            var env = new TestEnvironment();
+            var result = env.Service.CheckHasUniqueEmailAddress(new TestUserResource
+            {
+                Id = User01Id,
+                Email = User01Email,
+                CanonicalEmail = User01Email
+            });
+            Assert.That(result, Is.True);
         }
 
         class TestEnvironment : ResourceServiceTestEnvironmentBase<UserResource, UserEntity>
@@ -405,15 +439,15 @@ namespace SIL.XForge.Services
                     {
                         Id = User01Id,
                         Username = User01Id,
-                        Email = "user01@gmail.com",
-                        CanonicalEmail = "user01@gmail.com"
+                        Email = User01Email,
+                        CanonicalEmail = User01Email
                     },
                     new UserEntity
                     {
                         Id = "user02",
                         Username = "user02",
-                        Email = "user02@gmail.com",
-                        CanonicalEmail = "user02@gmail.com",
+                        Email = "user02@example.com",
+                        CanonicalEmail = "user02@example.com",
                         Sites = new Dictionary<string, Site>
                         {
                             { SiteAuthority, new Site { CurrentProjectId = "project01" } }
@@ -423,8 +457,8 @@ namespace SIL.XForge.Services
                     {
                         Id = "user03",
                         Username = "user03",
-                        Email = "user03@gmail.com",
-                        CanonicalEmail = "user03@gmail.com"
+                        Email = "user03@example.com",
+                        CanonicalEmail = "user03@example.com"
                     },
                     new UserEntity
                     {

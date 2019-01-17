@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using AutoMapper;
 using JsonApiDotNetCore.Internal.Query;
@@ -79,6 +80,20 @@ namespace SIL.XForge.Services
         protected override Task CheckCanUpdateAsync(string id, IDictionary<string, object> attrs,
             IDictionary<string, string> relationships)
         {
+            if (attrs.ContainsKey("Email"))
+            {
+                if (string.IsNullOrEmpty(attrs["Email"] as string))
+                {
+                    throw BadRequestException();
+                }
+
+                var regex = new Regex(@"^[A-Za-z]+@[A-Za-z.]+$");
+                if (!regex.IsMatch(attrs["Email"] as string))
+                {
+                    throw BadRequestException();
+                }
+            }
+
             return CheckCanUpdateDeleteAsync(id);
         }
 

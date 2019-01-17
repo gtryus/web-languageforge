@@ -174,6 +174,11 @@ namespace SIL.XForge.Services
             return entities.Filter(JsonApiContext, filter);
         }
 
+        protected JsonApiException BadRequestException()
+        {
+            return new JsonApiException(StatusCodes.Status400BadRequest, "Malformed request.");
+        }
+
         protected JsonApiException ForbiddenException()
         {
             return new JsonApiException(StatusCodes.Status403Forbidden,

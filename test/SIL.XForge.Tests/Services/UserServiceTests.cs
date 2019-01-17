@@ -249,6 +249,44 @@ namespace SIL.XForge.Services
         }
 
         [Test]
+        public void UpdateAsync_Email_Good_Pass()
+        {
+            var env = new TestEnvironment();
+            var id = "user01";
+            env.SetUser(id, SystemRoles.User);
+            env.JsonApiContext.AttributesToUpdate.Returns(new Dictionary<AttrAttribute, object>
+            {
+                { env.GetAttribute("email"), "bob@example.com" }
+            });
+            env.JsonApiContext.RelationshipsToUpdate.Returns(new Dictionary<RelationshipAttribute, object>());
+
+            Assert.DoesNotThrowAsync(async () => { await env.Service.UpdateAsync(id, null); });
+        }
+
+        [Test]
+        public void UpdateAsync_Email_Bad_Error()
+        {
+            Helper_("");
+            Helper_(null);
+            Helper_(" bob@example.com");
+            Helper_("bob example com");
+            // TODO non-string
+        }
+        public void Helper_(string badEmailAddress)
+        {
+            var env = new TestEnvironment();
+            var id = "user01";
+            env.SetUser(id, SystemRoles.User);
+            env.JsonApiContext.AttributesToUpdate.Returns(new Dictionary<AttrAttribute, object>
+            {
+                { env.GetAttribute("email"), badEmailAddress }
+            });
+            env.JsonApiContext.RelationshipsToUpdate.Returns(new Dictionary<RelationshipAttribute, object>());
+            var ex = Assert.ThrowsAsync<JsonApiException>(async () => { await env.Service.UpdateAsync(id, null); });
+            Assert.That(ex.GetStatusCode(), Is.EqualTo(StatusCodes.Status400BadRequest));
+        }
+
+        [Test]
         public async Task GetAsync_UserRole()
         {
             var env = new TestEnvironment();

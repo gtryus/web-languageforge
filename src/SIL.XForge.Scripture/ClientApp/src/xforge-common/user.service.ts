@@ -5,6 +5,7 @@ import { clone } from '@orbit/utils';
 import { combineLatest, Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, map, shareReplay, switchMap } from 'rxjs/operators';
 
+import { AbstractControl, ValidationErrors } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { registerCustomFilter } from './custom-filter-specifier';
 import { GetAllParameters, JsonApiService, QueryObservable } from './json-api.service';
@@ -86,6 +87,13 @@ export abstract class UserService<T extends User = User> extends ResourceService
 
   async onlineUpdateAttributes(id: string, attrs: Partial<T>): Promise<T> {
     return await this.jsonApiService.onlineUpdateAttributes<T>(this.identity(id), attrs);
+  }
+
+  emailUniqueValidator(/*userService: UserService,*/ control: AbstractControl): ValidationErrors {
+    const canonicalEmail = (control.value as string).toLowerCase();
+    // const users = await
+    return { duplicate: true };
+    // return null;
   }
 
   onlineGet(id: string): QueryObservable<T> {

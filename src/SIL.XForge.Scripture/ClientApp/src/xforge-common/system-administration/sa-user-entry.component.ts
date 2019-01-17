@@ -45,7 +45,7 @@ export class SaUserEntryComponent implements OnInit {
     this.accountUserForm = this.formBuilder.group({
       FullName: ['', Validators.compose([Validators.required])],
       Username: [],
-      Email: ['', Validators.compose([Validators.required, Validators.email, Validators.pattern(this.emailPattern)])],
+      Email: ['', Validators.compose([Validators.required, Validators.email, Validators.pattern(this.emailPattern), userService.emailUniqueValidator])],
       Role: ['', Validators.compose([Validators.required])],
       Password: ['', Validators.compose([Validators.required, Validators.minLength(7)])],
       ActivateStatus: []

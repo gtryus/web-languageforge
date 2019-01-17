@@ -104,6 +104,11 @@ namespace SIL.XForge.Services
             }
         }
 
+        protected Task CheckHasUniqueEmailAddress(TResource resource)
+        {
+            return Task.CompletedTask;
+        }
+
         protected override Task CheckCanCreateAsync(TResource resource)
         {
             if (SystemRole == SystemRoles.User)

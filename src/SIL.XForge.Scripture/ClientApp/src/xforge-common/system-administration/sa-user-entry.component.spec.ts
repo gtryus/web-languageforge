@@ -61,6 +61,9 @@ class TestUserEntryComponent {
       username: 'updatedusername'
     });
     when(this.mockedUserService.onlineUpdateAttributes(anything(), anything())).thenResolve(updatedUser);
+    when(this.mockedUserService.onlineSearch(anything(), anything(), anything(), anything())).thenReturn(
+      of(new TestQueryResults([this.testUser]))
+    );
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, NoopAnimationsModule, UICommonModule],
       declarations: [SaUserEntryComponent],
@@ -295,6 +298,16 @@ describe('System Administration User Entry Component', () => {
       env.clickElement(env.addButton);
       verify(env.mockedUserService.onlineCreate(anything())).once();
       verify(env.mockedNoticeService.show('User account created successfully.')).once();
+    }));
+
+    it('should not allow identical email addresses', fakeAsync(() => {
+      const env = new TestUserEntryComponent();
+      env.simulateAddUser();
+      env.setInputValue(env.emailInput, env.testUser.email);
+      // env.clickElement(env.addButton);
+      // verify(env.mockedUserService.onlineCreate(anything())).once();
+      // verify(env.mockedNoticeService.push(anything(), 'A user with the given email address already exists'));
+      expect(env.component.accountUserForm.get('Email').hasError('duplicate')).toBe(true);
     }));
   });
 });

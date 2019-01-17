@@ -18,12 +18,14 @@ namespace SIL.XForge.Services
     [TestFixture]
     public class UserServiceTests
     {
+        private const string User01Id = "user01";
+
         [Test]
         public void CreateAsync_UserRole()
         {
             using (var env = new TestEnvironment())
             {
-                env.SetUser("user01", SystemRoles.User);
+                env.SetUser(User01Id, SystemRoles.User);
 
                 var resource = new TestUserResource
                 {
@@ -43,7 +45,7 @@ namespace SIL.XForge.Services
         {
             using (var env = new TestEnvironment())
             {
-                env.SetUser("user01", SystemRoles.SystemAdmin);
+                env.SetUser(User01Id, SystemRoles.SystemAdmin);
 
                 var userResource = new TestUserResource
                 {
@@ -60,7 +62,7 @@ namespace SIL.XForge.Services
         {
             using (var env = new TestEnvironment())
             {
-                env.SetUser("user01", SystemRoles.SystemAdmin);
+                env.SetUser(User01Id, SystemRoles.SystemAdmin);
 
                 var userResource = new TestUserResource
                 {
@@ -79,7 +81,7 @@ namespace SIL.XForge.Services
         {
             using (var env = new TestEnvironment())
             {
-                env.SetUser("user01", SystemRoles.SystemAdmin);
+                env.SetUser(User01Id, SystemRoles.SystemAdmin);
 
                 var userResource = new TestUserResource
                 {
@@ -99,7 +101,7 @@ namespace SIL.XForge.Services
         {
             using (var env = new TestEnvironment())
             {
-                env.SetUser("user01", SystemRoles.User);
+                env.SetUser(User01Id, SystemRoles.User);
                 env.JsonApiContext.AttributesToUpdate.Returns(new Dictionary<AttrAttribute, object>
                     {
                         { env.GetAttribute("username"), "new" }
@@ -118,7 +120,7 @@ namespace SIL.XForge.Services
 
                 Assert.That(ex.GetStatusCode(), Is.EqualTo(StatusCodes.Status403Forbidden));
 
-                resource.Id = "user01";
+                resource.Id = User01Id;
                 UserResource updatedResource = await env.Service.UpdateAsync(resource.Id, resource);
 
                 Assert.That(updatedResource, Is.Not.Null);
@@ -131,7 +133,7 @@ namespace SIL.XForge.Services
         {
             using (var env = new TestEnvironment())
             {
-                env.SetUser("user01", SystemRoles.SystemAdmin);
+                env.SetUser(User01Id, SystemRoles.SystemAdmin);
                 env.JsonApiContext.AttributesToUpdate.Returns(new Dictionary<AttrAttribute, object>
                     {
                         { env.GetAttribute("username"), "new" }
@@ -156,7 +158,7 @@ namespace SIL.XForge.Services
         {
             using (var env = new TestEnvironment())
             {
-                env.SetUser("user01", SystemRoles.SystemAdmin);
+                env.SetUser(User01Id, SystemRoles.SystemAdmin);
                 env.JsonApiContext.AttributesToUpdate.Returns(new Dictionary<AttrAttribute, object>
                     {
                         { env.GetAttribute("username"), "USER_01" }
@@ -165,7 +167,7 @@ namespace SIL.XForge.Services
 
                 var resource = new TestUserResource
                 {
-                    Id = "user01",
+                    Id = User01Id,
                     Username = "USER_01"
                 };
                 UserResource updatedResource = await env.Service.UpdateAsync(resource.Id, resource);
@@ -180,7 +182,7 @@ namespace SIL.XForge.Services
         {
             using (var env = new TestEnvironment())
             {
-                env.SetUser("user01", SystemRoles.SystemAdmin);
+                env.SetUser(User01Id, SystemRoles.SystemAdmin);
                 env.JsonApiContext.AttributesToUpdate.Returns(new Dictionary<AttrAttribute, object>
                     {
                         { env.GetAttribute("email"), "New@gmail.com" }
@@ -189,7 +191,7 @@ namespace SIL.XForge.Services
 
                 var resource = new TestUserResource
                 {
-                    Id = "user01",
+                    Id = User01Id,
                     Email = "New@gmail.com"
                 };
                 UserResource updatedResource = await env.Service.UpdateAsync(resource.Id, resource);
@@ -293,13 +295,13 @@ namespace SIL.XForge.Services
         {
             using (var env = new TestEnvironment())
             {
-                env.SetUser("user01", SystemRoles.User);
+                env.SetUser(User01Id, SystemRoles.User);
                 env.JsonApiContext.QuerySet.Returns(new QuerySet());
                 env.JsonApiContext.PageManager.Returns(new PageManager());
 
                 UserResource[] resources = (await env.Service.GetAsync()).ToArray();
 
-                Assert.That(resources.Select(r => r.Id), Is.EquivalentTo(new[] { "user01" }));
+                Assert.That(resources.Select(r => r.Id), Is.EquivalentTo(new[] { User01Id }));
             }
         }
 
@@ -308,7 +310,7 @@ namespace SIL.XForge.Services
         {
             using (var env = new TestEnvironment())
             {
-                env.SetUser("user01", SystemRoles.SystemAdmin);
+                env.SetUser(User01Id, SystemRoles.SystemAdmin);
                 env.JsonApiContext.QuerySet.Returns(new QuerySet());
                 env.JsonApiContext.PageManager.Returns(new PageManager());
 
@@ -316,7 +318,7 @@ namespace SIL.XForge.Services
 
                 Assert.That(resources.Select(r => r.Id), Is.EquivalentTo(new[]
                     {
-                        "user01",
+                        User01Id,
                         "user02",
                         "user03",
                         "paratextuser01"
@@ -379,6 +381,12 @@ namespace SIL.XForge.Services
             }
         }
 
+        [Test]
+        public async Task CheckHasUniqueEmailAddress_Unique()
+        {
+            var env = new TestEnvironment();
+        }
+
         class TestEnvironment : ResourceServiceTestEnvironmentBase<UserResource, UserEntity>
         {
             public TestEnvironment()
@@ -395,8 +403,8 @@ namespace SIL.XForge.Services
                 {
                     new UserEntity
                     {
-                        Id = "user01",
-                        Username = "user01",
+                        Id = User01Id,
+                        Username = User01Id,
                         Email = "user01@gmail.com",
                         CanonicalEmail = "user01@gmail.com"
                     },

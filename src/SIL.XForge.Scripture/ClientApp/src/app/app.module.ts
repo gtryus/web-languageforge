@@ -11,6 +11,8 @@ import { xForgeCommonEntryComponents, XForgeCommonModule } from 'xforge-common/x
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CheckingOverviewComponent } from './checking/checking-overview/checking-overview.component';
+import { QuestionDialogComponent } from './checking/question-dialog/question-dialog.component';
 import { ConnectProjectComponent } from './connect-project/connect-project.component';
 import { CoreModule } from './core/core.module';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
@@ -31,6 +33,8 @@ import { SharedModule } from './shared/shared.module';
     HomeComponent,
     FetchDataComponent,
     ChangingUsernameDialogComponent,
+    CheckingOverviewComponent,
+    QuestionDialogComponent,
     ConnectProjectComponent,
     MyAccountComponent,
     RealtimeComponent,
@@ -52,7 +56,12 @@ import { SharedModule } from './shared/shared.module';
     XForgeCommonModule
   ],
   providers: [DatePipe],
-  entryComponents: [ChangingUsernameDialogComponent, DeleteAccountDialogComponent, ...xForgeCommonEntryComponents],
+  entryComponents: [
+    ChangingUsernameDialogComponent,
+    DeleteAccountDialogComponent,
+    QuestionDialogComponent,
+    ...xForgeCommonEntryComponents
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -3,18 +3,18 @@ import { Record } from '@orbit/data';
 
 import { JsonApiService } from 'xforge-common/json-api.service';
 import { InputSystem } from 'xforge-common/models/input-system';
-import { ProjectRole } from 'xforge-common/models/project-role';
 import { ProjectService } from 'xforge-common/project.service';
 import { nameof } from 'xforge-common/utils';
 import { SFProject } from './models/sfproject';
+import { ProjectRole, SFProjectRoles } from './models/sfproject-roles';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SFProjectService extends ProjectService<SFProject> {
   private static readonly ROLES: ProjectRole[] = [
-    { role: 'pt_administrator', displayName: 'Administrator' },
-    { role: 'pt_translator', displayName: 'Translator' }
+    { role: SFProjectRoles.ParatextAdministrator, displayName: 'Administrator' },
+    { role: SFProjectRoles.ParatextTranslator, displayName: 'Translator' }
   ];
 
   constructor(jsonApiService: JsonApiService) {

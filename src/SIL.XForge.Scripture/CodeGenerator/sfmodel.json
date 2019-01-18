@@ -50,10 +50,7 @@
           "additionalProperties": false,
           "properties": {
             "SourceParatextId": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             },
             "SourceInputSystem": {
               "oneOf": [
@@ -92,22 +89,13 @@
       "additionalProperties": false,
       "properties": {
         "Abbreviation": {
-          "type": [
-            "null",
-            "string"
-          ]
+          "type": ["null", "string"]
         },
         "Tag": {
-          "type": [
-            "null",
-            "string"
-          ]
+          "type": ["null", "string"]
         },
         "LanguageName": {
-          "type": [
-            "null",
-            "string"
-          ]
+          "type": ["null", "string"]
         },
         "IsRightToLeft": {
           "type": "boolean"
@@ -143,10 +131,7 @@
               "format": "double"
             },
             "State": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             }
           }
         }
@@ -196,10 +181,7 @@
           "additionalProperties": false,
           "properties": {
             "Projects": {
-              "type": [
-                "array",
-                "null"
-              ],
+              "type": ["array", "null"],
               "items": {
                 "$ref": "#/definitions/SFProjectUserResource"
               }
@@ -270,16 +252,10 @@
           "type": "boolean"
         },
         "SelectedDocumentSetId": {
-          "type": [
-            "null",
-            "string"
-          ]
+          "type": ["null", "string"]
         },
         "SelectedSegmentRef": {
-          "type": [
-            "null",
-            "string"
-          ]
+          "type": ["null", "string"]
         },
         "SelectedSegmentChecksum": {
           "type": "integer",
@@ -298,22 +274,13 @@
           "additionalProperties": false,
           "properties": {
             "Role": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             },
             "UserRef": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             },
             "ProjectRef": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             }
           }
         }
@@ -324,16 +291,10 @@
       "additionalProperties": false,
       "properties": {
         "Id": {
-          "type": [
-            "null",
-            "string"
-          ]
+          "type": ["null", "string"]
         },
         "StringId": {
-          "type": [
-            "null",
-            "string"
-          ]
+          "type": ["null", "string"]
         }
       }
     },
@@ -348,89 +309,50 @@
           "additionalProperties": false,
           "properties": {
             "Username": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             },
             "Name": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             },
             "Email": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             },
             "CanonicalEmail": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             },
             "EmailVerified": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             },
             "GoogleId": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             },
             "Password": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             },
             "ParatextId": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             },
             "Role": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             },
             "Active": {
               "type": "boolean"
             },
             "AvatarUrl": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             },
             "MobilePhone": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             },
             "ContactMethod": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             },
             "Birthday": {
               "type": "string",
               "format": "date-time"
             },
             "Gender": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             },
             "Site": {
               "oneOf": [
@@ -451,10 +373,7 @@
       "additionalProperties": false,
       "properties": {
         "CurrentProjectId": {
-          "type": [
-            "null",
-            "string"
-          ]
+          "type": ["null", "string"]
         }
       }
     },
@@ -491,16 +410,10 @@
           "additionalProperties": false,
           "properties": {
             "ProjectRef": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             },
             "OwnerRef": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             }
           }
         }
@@ -516,16 +429,10 @@
           "additionalProperties": false,
           "properties": {
             "Name": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             },
             "BookId": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             }
           }
         }
@@ -542,10 +449,7 @@
           "additionalProperties": false,
           "properties": {
             "ProjectName": {
-              "type": [
-                "null",
-                "string"
-              ]
+              "type": ["null", "string"]
             }
           }
         }
@@ -561,10 +465,7 @@
       "additionalProperties": false,
       "properties": {
         "ParatextId": {
-          "type": [
-            "null",
-            "string"
-          ]
+          "type": ["null", "string"]
         },
         "CheckingConfig": {
           "oneOf": [
@@ -607,19 +508,13 @@
           ]
         },
         "Users": {
-          "type": [
-            "array",
-            "null"
-          ],
+          "type": ["array", "null"],
           "items": {
             "$ref": "#/definitions/SFProjectUserResource"
           }
         },
         "Texts": {
-          "type": [
-            "array",
-            "null"
-          ],
+          "type": ["array", "null"],
           "items": {
             "$ref": "#/definitions/TextResource"
           }

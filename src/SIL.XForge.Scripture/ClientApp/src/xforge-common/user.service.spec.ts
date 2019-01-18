@@ -42,4 +42,10 @@ describe('UserService', () => {
   it('should be created', inject([UserService], (service: UserService) => {
     expect(service).toBeTruthy();
   }));
+
+  describe('emailUniqueValidator', () => {
+    it('should allow unique emails', inject([UserService], (service: UserService) => {
+      expect(service).toBeTruthy();
+    }));
+  });
 });

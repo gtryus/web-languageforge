@@ -2,10 +2,10 @@ import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Record } from '@orbit/data';
 import { clone } from '@orbit/utils';
-import { combineLatest, Observable } from 'rxjs';
+import { combineLatest, Observable, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, map, shareReplay, switchMap } from 'rxjs/operators';
 
-import { AbstractControl, ValidationErrors } from '@angular/forms';
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { registerCustomFilter } from './custom-filter-specifier';
 import { GetAllParameters, JsonApiService, QueryObservable } from './json-api.service';
@@ -89,11 +89,32 @@ export abstract class UserService<T extends User = User> extends ResourceService
     return await this.jsonApiService.onlineUpdateAttributes<T>(this.identity(id), attrs);
   }
 
-  emailUniqueValidator(/*userService: UserService,*/ control: AbstractControl): ValidationErrors {
-    const canonicalEmail = (control.value as string).toLowerCase();
-    // const users = await
-    return { duplicate: true };
-    // return null;
+  /* TODO: async */ onlineEmailUniqueValidator(service: UserService /*TODO: UserId*/): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors => {
+      const canonicalEmail = (control.value as string).toLowerCase();
+      if (canonicalEmail.length < 5) {
+        return null;
+      }
+      // const user: Partial<User> = {
+      //   canonicalEmail: (control.value as string).toLowerCase()
+      // };
+      let result: User;
+      // REVIEW (Hasso) 2019.01: will this be accessible for non-admins (e.g. new user signup)?
+      service.jsonApiService
+        .onlineGetAll<User>(service.type, {
+          filters: [{ name: 'search', value: canonicalEmail }]
+        })
+        .subscribe(res => {
+          if (res.results.length > 0) {
+            result = res.results[0];
+            // return { duplicate: true };
+          }
+        });
+      if (result) {
+        return { duplicate: true };
+      }
+      return null;
+    };
   }
 
   onlineGet(id: string): QueryObservable<T> {

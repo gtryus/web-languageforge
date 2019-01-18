@@ -105,6 +105,8 @@ namespace SIL.XForge.Services
             }
         }
 
+        // [System.Web.Services.WebMethod]
+        // https://codehandbook.org/an-asp-net-way-to-call-server-side-methods-using-javascript/
         public bool CheckHasUniqueEmailAddress(TResource resource)
         {
             return !Entities.Query().Any(e => e.CanonicalEmail == resource.CanonicalEmail && e.Id != resource.Id);

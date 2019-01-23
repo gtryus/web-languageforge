@@ -12,6 +12,8 @@ describe('E2E Change Password app', () => {
   const newPassword = '12345678';
 
   it('setup: login as user, go to change password page', async () => {
+    // ToDo: temporarily add logout. This will need to change when this branch is rebased - IJH 2019-01
+    await LoginPage.logout();
     await loginPage.loginAsUser();
     await changePasswordPage.get();
   });
@@ -41,11 +43,8 @@ describe('E2E Change Password app', () => {
   it('Change new password into old password', async () => {
     await AppPage.homepage.avatar.click();
     await AppPage.homepage.myAccount.click();
-    await browser.wait(
-      ExpectedConditions.visibilityOf(MyAccountPage.accountpage.myAccountHeader),
-      constants.conditionTimeout
-    );
-    await MyAccountPage.accountpage.accountChangePasswordButton.click();
+    await browser.wait(ExpectedConditions.visibilityOf(MyAccountPage.changePasswordButton), constants.conditionTimeout);
+    await MyAccountPage.changePasswordButton.click();
     await changePasswordPage.newPasswordInput.sendKeys(constants.adminPassword);
     await changePasswordPage.confirmPasswordInput.sendKeys(constants.adminPassword);
     await changePasswordPage.changePasswordButton.click();

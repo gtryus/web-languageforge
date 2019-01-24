@@ -47,12 +47,8 @@ export class SaUserEntryComponent implements OnInit {
       Username: [],
       Email: [
         '',
-        Validators.compose([
-          Validators.required,
-          Validators.email,
-          Validators.pattern(this.emailPattern),
-          userService.onlineEmailUniqueValidator(this.userService)
-        ])
+        Validators.compose([Validators.required, Validators.email, Validators.pattern(this.emailPattern)]),
+        userService.onlineEmailUniqueValidator(this.userService)
       ],
       Role: ['', Validators.compose([Validators.required])],
       Password: ['', Validators.compose([Validators.required, Validators.minLength(7)])],

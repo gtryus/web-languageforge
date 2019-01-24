@@ -19,6 +19,7 @@ import { ChangingUsernameDialogComponent } from './my-account/changing-username-
 import { DeleteAccountDialogComponent } from './my-account/delete-account-dialog/delete-account-dialog.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { DeleteProjectDialogComponent } from './project-settings/delete-project-dialog/delete-project-dialog.component';
 import { ProjectSettingsComponent } from './project-settings/project-settings.component';
 import { ProjectComponent } from './project/project.component';
 import { RealtimeComponent } from './realtime/realtime.component';
@@ -36,7 +37,8 @@ import { SharedModule } from './shared/shared.module';
     RealtimeComponent,
     DeleteAccountDialogComponent,
     ProjectSettingsComponent,
-    ProjectComponent
+    ProjectComponent,
+    DeleteProjectDialogComponent
   ],
   imports: [
     AppRoutingModule,
@@ -52,7 +54,12 @@ import { SharedModule } from './shared/shared.module';
     XForgeCommonModule
   ],
   providers: [DatePipe],
-  entryComponents: [ChangingUsernameDialogComponent, DeleteAccountDialogComponent, ...xForgeCommonEntryComponents],
+  entryComponents: [
+    ChangingUsernameDialogComponent,
+    DeleteAccountDialogComponent,
+    DeleteProjectDialogComponent,
+    ...xForgeCommonEntryComponents
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

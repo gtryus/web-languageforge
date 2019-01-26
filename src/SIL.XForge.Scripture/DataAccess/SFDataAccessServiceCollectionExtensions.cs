@@ -17,6 +17,7 @@ namespace SIL.XForge.Scripture.DataAccess
             services.AddMongoRepository<SFProjectEntity>(options.MongoDatabaseName, "sf_projects");
             services.AddMongoRepository<SyncJobEntity>(options.MongoDatabaseName, "sync_jobs");
             services.AddMongoRepository<TextEntity>(options.MongoDatabaseName, "texts");
+            services.AddMongoRepository<QuestionEntity>(options.MongoDatabaseName, "questions");
 
             return services;
         }

@@ -21,6 +21,7 @@
     <PackageReference Include="Microsoft.AspNetCore.NodeServices" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="2.1.1" />
     <PackageReference Include="SIL.Machine.WebApi" Version="2.1.0-4" />
+    <PackageReference Include="SIL.Scripture" Version="4.2.0-1057" />
   </ItemGroup>
 
   <ItemGroup>

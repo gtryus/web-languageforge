@@ -22,6 +22,7 @@ namespace SIL.XForge.Scripture.Services
         public IResourceMapper<SyncJobResource, SyncJobEntity> SyncJobMapper { get; set; }
         public IResourceMapper<SFProjectUserResource, SFProjectUserEntity> ProjectUserMapper { get; set; }
         public IResourceMapper<TextResource, TextEntity> TextMapper { get; set; }
+        public IResourceMapper<QuestionResource, QuestionEntity> QuestionMapper { get; set; }
 
         protected override IRelationship<SFProjectEntity> GetRelationship(string relationshipName)
         {
@@ -36,6 +37,8 @@ namespace SIL.XForge.Scripture.Services
                     return OneToMany(ProjectUserMapper, u => u.ProjectRef);
                 case nameof(SFProjectResource.Texts):
                     return OneToMany(TextMapper, t => t.ProjectRef);
+                case nameof(SFProjectResource.Questions):
+                    return OneToMany(QuestionMapper, q => q.ProjectRef);
             }
             return base.GetRelationship(relationshipName);
         }

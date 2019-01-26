@@ -50,7 +50,10 @@
           "additionalProperties": false,
           "properties": {
             "SourceParatextId": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             },
             "SourceInputSystem": {
               "oneOf": [
@@ -89,13 +92,22 @@
       "additionalProperties": false,
       "properties": {
         "Abbreviation": {
-          "type": ["null", "string"]
+          "type": [
+            "null",
+            "string"
+          ]
         },
         "Tag": {
-          "type": ["null", "string"]
+          "type": [
+            "null",
+            "string"
+          ]
         },
         "LanguageName": {
-          "type": ["null", "string"]
+          "type": [
+            "null",
+            "string"
+          ]
         },
         "IsRightToLeft": {
           "type": "boolean"
@@ -131,7 +143,10 @@
               "format": "double"
             },
             "State": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             }
           }
         }
@@ -181,7 +196,10 @@
           "additionalProperties": false,
           "properties": {
             "Projects": {
-              "type": ["array", "null"],
+              "type": [
+                "array",
+                "null"
+              ],
               "items": {
                 "$ref": "#/definitions/SFProjectUserResource"
               }
@@ -252,10 +270,16 @@
           "type": "boolean"
         },
         "SelectedDocumentSetId": {
-          "type": ["null", "string"]
+          "type": [
+            "null",
+            "string"
+          ]
         },
         "SelectedSegmentRef": {
-          "type": ["null", "string"]
+          "type": [
+            "null",
+            "string"
+          ]
         },
         "SelectedSegmentChecksum": {
           "type": "integer",
@@ -274,13 +298,22 @@
           "additionalProperties": false,
           "properties": {
             "Role": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             },
             "UserRef": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             },
             "ProjectRef": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             }
           }
         }
@@ -291,10 +324,16 @@
       "additionalProperties": false,
       "properties": {
         "Id": {
-          "type": ["null", "string"]
+          "type": [
+            "null",
+            "string"
+          ]
         },
         "StringId": {
-          "type": ["null", "string"]
+          "type": [
+            "null",
+            "string"
+          ]
         }
       }
     },
@@ -309,50 +348,89 @@
           "additionalProperties": false,
           "properties": {
             "Username": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             },
             "Name": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             },
             "Email": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             },
             "CanonicalEmail": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             },
             "EmailVerified": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             },
             "GoogleId": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             },
             "Password": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             },
             "ParatextId": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             },
             "Role": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             },
             "Active": {
               "type": "boolean"
             },
             "AvatarUrl": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             },
             "MobilePhone": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             },
             "ContactMethod": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             },
             "Birthday": {
               "type": "string",
               "format": "date-time"
             },
             "Gender": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             },
             "Site": {
               "oneOf": [
@@ -373,7 +451,10 @@
       "additionalProperties": false,
       "properties": {
         "CurrentProjectId": {
-          "type": ["null", "string"]
+          "type": [
+            "null",
+            "string"
+          ]
         }
       }
     },
@@ -410,10 +491,16 @@
           "additionalProperties": false,
           "properties": {
             "ProjectRef": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             },
             "OwnerRef": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             }
           }
         }
@@ -429,13 +516,300 @@
           "additionalProperties": false,
           "properties": {
             "Name": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             },
             "BookId": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             }
           }
         }
+      ]
+    },
+    "QuestionResource": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/SFProjectDataResource"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "Source": {
+              "type": [
+                "null",
+                "string"
+              ]
+            },
+            "ScriptureStart": {
+              "oneOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "$ref": "#/definitions/VerseRef"
+                }
+              ]
+            },
+            "ScriptureEnd": {
+              "oneOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "$ref": "#/definitions/VerseRef"
+                }
+              ]
+            },
+            "Text": {
+              "type": [
+                "null",
+                "string"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "VerseRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "FirstChapter": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "LastChapter": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "LastVerse": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "IsExcluded": {
+          "type": "boolean"
+        },
+        "HasSegmentsDefined": {
+          "type": "boolean"
+        },
+        "HasMultiple": {
+          "type": "boolean"
+        },
+        "Book": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "Chapter": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "Verse": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "Text": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "BBBCCC": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "BBBCCCVVV": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "BBBCCCVVVS": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "LongHashCode": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "VersificationStr": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "Versification": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/ScrVers"
+            }
+          ]
+        },
+        "Valid": {
+          "type": "boolean"
+        },
+        "ValidStatus": {
+          "$ref": "#/definitions/ValidStatusType"
+        },
+        "BookNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "ChapterNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "VerseNum": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "ScrVers": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Name": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "FullPath": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "IsPresent": {
+          "type": "boolean"
+        },
+        "Type": {
+          "$ref": "#/definitions/ScrVersType"
+        },
+        "HasVerseSegments": {
+          "type": "boolean"
+        },
+        "IsCustomized": {
+          "type": "boolean"
+        },
+        "BaseVersification": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/ScrVers"
+            }
+          ]
+        },
+        "ScriptureBooks": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "$ref": "#/definitions/BookSet"
+            }
+          ]
+        }
+      }
+    },
+    "ScrVersType": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Unknown",
+        "Original",
+        "Septuagint",
+        "Vulgate",
+        "English",
+        "RussianProtestant",
+        "RussianOrthodox"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    },
+    "BookSet": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Books": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "FirstSelectedBookNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "LastSelectedBookNum": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Count": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "SelectedBookNumbers": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "SelectedBookIds": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ValidStatusType": {
+      "type": "integer",
+      "description": "",
+      "x-enumNames": [
+        "Valid",
+        "UnknownVersification",
+        "OutOfRange",
+        "VerseOutOfOrder",
+        "VerseRepeated"
+      ],
+      "enum": [
+        0,
+        1,
+        2,
+        3,
+        4
       ]
     },
     "ProjectResource": {
@@ -449,7 +823,10 @@
           "additionalProperties": false,
           "properties": {
             "ProjectName": {
-              "type": ["null", "string"]
+              "type": [
+                "null",
+                "string"
+              ]
             }
           }
         }
@@ -465,7 +842,10 @@
       "additionalProperties": false,
       "properties": {
         "ParatextId": {
-          "type": ["null", "string"]
+          "type": [
+            "null",
+            "string"
+          ]
         },
         "CheckingConfig": {
           "oneOf": [
@@ -508,15 +888,30 @@
           ]
         },
         "Users": {
-          "type": ["array", "null"],
+          "type": [
+            "array",
+            "null"
+          ],
           "items": {
             "$ref": "#/definitions/SFProjectUserResource"
           }
         },
         "Texts": {
-          "type": ["array", "null"],
+          "type": [
+            "array",
+            "null"
+          ],
           "items": {
             "$ref": "#/definitions/TextResource"
+          }
+        },
+        "Questions": {
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "$ref": "#/definitions/QuestionResource"
           }
         }
       }

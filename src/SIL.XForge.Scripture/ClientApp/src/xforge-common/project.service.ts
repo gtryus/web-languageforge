@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Record, RecordIdentity } from '@orbit/data';
+import { Record } from '@orbit/data';
 import { clone } from '@orbit/utils';
 import { combineLatest, Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 
 import { registerCustomFilter } from './custom-filter-specifier';
 import { GetAllParameters, JsonApiService, QueryObservable } from './json-api.service';
@@ -38,8 +38,8 @@ export abstract class ProjectService<T extends Project = Project> extends Resour
     return this.jsonApiService.getAll(this.type, parameters, include);
   }
 
-  get(id: string, include?: string[]): QueryObservable<T> {
-    return this.jsonApiService.get(this.identity(id), include);
+  get(id: string): Observable<T> {
+    return this.jsonApiService.get<T>(this.identity(id)).pipe(map(r => r.results));
   }
 
   onlineUpdateAttributes(id: string, attrs: Partial<T>): Promise<T> {

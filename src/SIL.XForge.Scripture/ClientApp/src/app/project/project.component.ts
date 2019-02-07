@@ -22,8 +22,8 @@ export class ProjectComponent extends SubscriptionDisposable {
         })
       ),
       projectData => {
-        if (projectData.results) {
-          this.project = projectData.results;
+        if (projectData) {
+          this.project = projectData;
         } else {
           this.goHome();
         }

@@ -123,9 +123,11 @@ export class ConnectProjectComponent extends SubscriptionDisposable implements O
       newProject = await this.projectService.onlineCreate(newProject);
       await this.projectUserService.onlineCreate(newProject.id, this.userService.currentUserId);
       const jobId = await this.syncJobService.start(newProject.id);
-      this.subscribe(this.syncJobService.listen(jobId), job => {
+      this.subscribe(this.syncJobService.listen(jobId), async job => {
         this.job = job;
         if (!job.isActive) {
+          const translationEngine = this.projectService.createTranslationEngine(newProject.id);
+          await translationEngine.startTraining();
           this.router.navigate(['/home']);
         }
       });

@@ -66,12 +66,10 @@ class TestEnvironment {
   setupProjectData(): void {
     when(this.mockedProjectService.get('project01')).thenReturn(
       of(
-        new TestQueryResults<SFProject>(
-          new SFProject({
-            id: 'project01',
-            projectName: 'Project 01'
-          })
-        )
+        new SFProject({
+          id: 'project01',
+          projectName: 'Project 01'
+        })
       )
     );
   }
